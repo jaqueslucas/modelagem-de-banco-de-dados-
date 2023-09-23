@@ -1,0 +1,106 @@
+--EX 1
+select tbcurso.nome
+from tbcurso, tbunidade, tbcurso_por_unidade
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbunidade.municipio = 'Jacareí'
+order by tbcurso.nome asc;
+
+--EX 2 
+
+select tbcurso.nome, tbturno.nome
+from tbcurso, tbunidade, tbcurso_por_unidade, tbturno
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and 
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbturno.id = tbcurso_por_unidade.idturno and  
+tbunidade.municipio = 'Jacareí'
+order by tbcurso.nome asc;
+
+
+--EX 3
+
+select distinct tbunidade.unidade as "Unidade" 
+from tbcurso, tbunidade, tbcurso_por_unidade
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbcurso.nome = 'Gestão Financeira'
+order by tbunidade.unidade asc;
+
+
+-- EX 4
+
+select distinct tbturno.nome as "Turno"
+from tbcurso, tbcurso_por_unidade, tbturno
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and 
+tbturno.id = tbcurso_por_unidade.idturno and
+tbcurso.nome = 'Gestão Financeira' 
+order by tbturno.nome asc;
+
+--EX 5
+select tbturno.nome as "Turno", count(tbcurso.nome) as "Quantidade"
+from tbcurso, tbcurso_por_unidade, tbturno
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Turno"
+order by tbturno.nome asc; 
+
+--EX 6 
+select tbturno.nome as "Turno", sum(tbcurso_por_unidade.vaga) as "Vagas"
+from tbturno, tbcurso_por_unidade
+where
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Turno"
+order by "Turno" asc;
+
+--EX 7 
+select tbunidade.unidade as "Unidade", tbturno.nome as "Turno"
+from tbunidade, tbcurso_por_unidade, tbturno
+where
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Unidade", "Turno"
+order by tbunidade.unidade asc;
+
+--EX 8
+select tbunidade.unidade as "Unidade", tbturno.nome as "Turno",
+count(tbcurso.nome) as "Curso"
+from tbunidade, tbcurso_por_unidade, tbturno, tbcurso
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and 
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Unidade", "Turno"
+order by tbunidade.unidade asc;
+
+--EX 9 
+select tbunidade.unidade as "Unidade", tbturno.nome as "Turno",
+count(tbcurso.nome) as "Curso"
+from tbunidade, tbcurso_por_unidade, tbturno, tbcurso
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and 
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Unidade", "Turno"
+having count(tbcurso.nome) = 5
+order by tbunidade.unidade asc;
+
+--EX 10 
+
+select tbunidade.unidade as "Unidade", tbturno.nome as "Turno",
+count(tbcurso.nome) as "Curso"
+from tbunidade, tbcurso_por_unidade, tbturno, tbcurso
+where
+tbcurso.id = tbcurso_por_unidade.idcurso and 
+tbunidade.id = tbcurso_por_unidade.idunidade and
+tbturno.id = tbcurso_por_unidade.idturno
+group by "Unidade", "Turno"
+having count(tbcurso.nome) = 5
+order by tbunidade.unidade asc;
+
+
+
