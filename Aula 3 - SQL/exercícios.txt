@@ -1,0 +1,74 @@
+Exercício 1:
+
+SELECT unidade AS Fatec, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY unidade
+ORDER BY Fatec;
+
+Exercício 2:
+
+SELECT unidade AS Fatec, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY unidade
+ORDER BY Quantidade DESC;
+
+Exercício 3:
+
+SELECT unidade AS Fatec, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY unidade
+ORDER BY Quantidade DESC
+LIMIT 1;
+
+Exercício 4: 
+
+SELECT unidade AS Fatec, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY unidade
+ORDER BY Quantidade DESC
+LIMIT 1 OFFSET 1;
+
+Exercício 5:
+
+SELECT unidade AS Fatec, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY unidade
+HAVING COUNT(*) = 3
+ORDER BY fatec;
+
+Exercício 6:
+
+SELECT unidade AS Fatec, turno, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY turno, unidade
+ORDER BY Fatec;
+
+Exercício 7: 
+
+SELECT unidade AS Fatec, turno, COUNT(*) AS Quantidade
+FROM tbcurso
+GROUP BY turno, unidade
+HAVING COUNT(*) = 5
+ORDER BY Fatec;
+
+Exercício 8:
+
+SELECT unidade AS Fatec, turno, COUNT(*) AS Quantidade
+FROM tbcurso
+WHERE municipio = 'São José dos Campos'
+GROUP BY turno, unidade
+ORDER BY Fatec; 
+
+Exercício 9 : 
+
+SELECT unidade AS Fatec, turno, SUM(vaga) AS Quantidade
+FROM tbcurso
+WHERE municipio = 'São José dos Campos'
+GROUP BY turno
+ORDER BY turno;
+
+Exercício 10:
+
+SELECT turno, SUM(vaga) AS Quantidade
+FROM tbcurso
+GROUP BY turno;
